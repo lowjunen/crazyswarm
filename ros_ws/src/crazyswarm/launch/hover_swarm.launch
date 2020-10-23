@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="joy_dev" default="/dev/input/js0" />
+  <arg name="joy_dev" default="/dev/input/js1" />
 
   <rosparam command="load" file="$(find crazyswarm)/launch/crazyflieTypes.yaml" />
   <rosparam command="load" file="$(find crazyswarm)/launch/crazyflies.yaml" />
@@ -19,7 +19,7 @@
           enHighLevel: 1
         stabilizer:
           estimator: 2 # 1: complementary, 2: kalman
-          controller: 2 # 1: PID, 2: mellinger
+          controller: 1 # 1: PID, 2: mellinger
         ring:
           effect: 16 # 6: double spinner, 7: solid color, 16: packetRate
           solidBlue: 255 # if set to solid color
@@ -32,15 +32,11 @@
         kalman:
           resetEstimation: 1
       # tracking
-      motion_capture_type: "vicon" # one of none,vicon,optitrack,qualisys,vrpn
-      object_tracking_type: "libobjecttracker" # one of motionCapture,libobjecttracker
+      motion_capture_type: "optitrack" # one of none,vicon,optitrack,qualisys,vrpn
+      object_tracking_type: "motionCapture" # one of motionCapture,libobjecttracker
       send_position_only: False # set to False to send position+orientation; set to True to send position only
-      vicon_host_name: "vicon"
-      # optitrack_host_name: "optitrack"
-      # qualisys_host_name: "10.0.5.219"
-      # qualisys_base_port: 22222
-      # vrpn_host_name: "vicon"
-      save_point_clouds: ~/pointCloud.ot
+      optitrack_host_name: "mocap.local"
+      #save_point_clouds: ~/pointCloud.ot
       print_latency: False
       write_csvs: False
       force_no_cache: False
